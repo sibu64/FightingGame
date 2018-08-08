@@ -20,22 +20,3 @@ enum FighterType: String {
     case colossus = "Colosse"
 }
 
-/*class Fighters{
-    var mage = Fighters(fighterName: "")
-    var colossus = Fighters(fighterName: "")
-    var warrior = Fighters(fighterName: "")
-    var dwarf = Fighters(fighterName: "")
-    var life = 100
-    
-    
-    
-    var fighterName: String? = ""
-    
-  init(fighterName: String){
-       self.fighterName = fighterName
-    }
-    
-    //var fighters : [String: String]=["mage": "", "colossus": "", "warrior":"", "dwarf": ""]
-    
-    var fighters : [(key: String, value: String)] = [(key: "mage", value: ""),(key: "colossus", value: ""), (key: "warrior", value: ""), (key: "dwarf", value: "")]
-}*/

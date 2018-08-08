@@ -9,8 +9,18 @@
 import Foundation
 
 
-class Colossus{
-    
-    
-    
+class Colossus: Fighter {
+    // ***********************************************
+    // MARK: - Interface
+    // ***********************************************
+    var type: FighterType {
+    return .colossus
+    }
+    var name: String
+    // ***********************************************
+    // MARK: - Implementation
+    // ***********************************************
+    init(name: String) {
+    self.name = name
+    }
 }

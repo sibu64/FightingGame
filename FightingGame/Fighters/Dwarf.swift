@@ -8,8 +8,20 @@
 
 import Foundation
 
-class Dwarf{
-    var dwarfName : String = ""
+class Dwarf: Fighter {
+    // ***********************************************
+    // MARK: - Interface
+    // ***********************************************
+    var type: FighterType {
+        return .dwarf
+    }
+    var name: String
+    // ***********************************************
+    // MARK: - Implementation
+    // ***********************************************
+    init(name: String) {
+        self.name = name
+    }
     
     
 }

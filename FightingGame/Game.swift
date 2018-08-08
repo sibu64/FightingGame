@@ -2,7 +2,7 @@
 //  Game.swift
 //  FightingGame
 //
-//  Created by Darrieumerlou on 07/08/2018.
+//  Created by Darrieumerlou on 06/08/2018.
 //  Copyright © 2018 Darrieumerlou. All rights reserved.
 //
 
@@ -12,8 +12,8 @@ class Game {
     // ***********************************************
     // MARK: - Interface
     // ***********************************************
-    var player1 = Player()
-    var player2 = Player()
+    fileprivate var player1 = Player()
+    fileprivate var player2 = Player()
     // ***********************************************
     // MARK: - Implementation
     // ***********************************************
@@ -44,21 +44,23 @@ class Game {
     }
     
     func chooseFighter(for player: Player, _ number: NSInteger) ->Fighter? {
-        print("Choissisez le personnage numero \(number)")
+        print("Choissisez le combattant numero \(number):")
         if let choice = readLine() {
             switch choice {
             case "1":
-                var name: String?
-                while name == nil {
-                    name = namingFighter()
-                }
-                print("Personnage \(number) s'appel \(name!)")
+                let name = namingFighter()
                 return Warrior(name: name!)
-            //case "2":
-                /*let name = namingFighter()
-                print("Le nom de votre personnage est \(name)")
-                return Mage(name: name)*/
-            default: print("Je ne comprends pas, merci de saisir le choix (exemple: 1, 2, 3, 4)")
+            case "2":
+                let name = namingFighter()
+                return Mage(name: name!)
+            case "3":
+                let name = namingFighter()
+                return Dwarf(name: name!)
+            case "4":
+                let name = namingFighter()
+                return Colossus(name: name!)
+            default:
+                print("Je ne comprends pas, merci de saisir le choix (exemple: 1, 2, 3, 4)")
             }
         }
         return nil
@@ -66,28 +68,43 @@ class Game {
     
     func namingFighter() ->String? {
         print("Quel est son nom ?")
-        if let name = readLine(), name.isEmpty == false {
-            return name
+        var nameFighter: String? = nil
+        while nameFighter == nil {
+            if let name = readLine(), name.isEmpty == false {
+                if isValidFighter(name: name) == true {
+                    nameFighter = name
+                    break
+                } else {
+                    nameFighter = nil
+                    print("Attention !! Le nom des combattants doit être unique.")
+                }
+            }
+            nameFighter = nil
+            print("Merci de saisir un nom")
         }
-        print("Merci de saisir un nom")
-        return nil
+        return nameFighter
+    }
+    
+    func addFighter(for player: Player, at index: NSInteger) {
+        guard let fighter = chooseFighter(for: player, index) else {
+            addFighter(for: player, at: index)
+            return
+        }
+        player.addFighter(fighter)
+    }
+    
+    func isValidFighter(name: String) ->Bool {
+        let isValid1 = player1.isValidFighter(name: name)
+        let isValid2 = player2.isValidFighter(name: name)
+        return isValid1 && isValid2
     }
     
     func start() {
         gamePlay()
         setPlayer(player1, 1)
         setPlayer(player2, 2)
-        startingChooseFighter(for: player1)
-        
-        while player1.fighters.count != 3 {
-            for index in 1...3 {
-                while chooseFighter(for: player1, index) == nil {
-                    if let fighter = chooseFighter(for: player1, index) {
-                        player1.addFighter(fighter)
-                    }
-                }
-            }
-        }
+        setFighter(for: player1)
+        setFighter(for: player2)
     }
 }
 
@@ -96,5 +113,16 @@ extension Game {
         while player.firstname == nil {
             player.firstname = choosePlayerName(number)
         }
+    }
+}
+
+extension Game {
+    func setFighter(for player: Player) {
+        startingChooseFighter(for: player)
+        repeat {
+            for index in 1...3 {
+                addFighter(for: player, at: index)
+            }
+        } while player.fighters.count != 3
     }
 }
