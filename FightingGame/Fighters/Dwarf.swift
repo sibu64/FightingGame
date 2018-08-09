@@ -12,16 +12,18 @@ class Dwarf: Fighter {
     // ***********************************************
     // MARK: - Interface
     // ***********************************************
+    var name: String
+    var life: NSInteger = 30
     var type: FighterType {
         return .dwarf
     }
-    var name: String
+    var weapon: Weapon {
+        return .axe
+    }
     // ***********************************************
     // MARK: - Implementation
     // ***********************************************
     init(name: String) {
         self.name = name
     }
-    
-    
 }

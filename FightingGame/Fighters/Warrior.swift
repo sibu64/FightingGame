@@ -12,10 +12,14 @@ class Warrior: Fighter {
     // ***********************************************
     // MARK: - Interface
     // ***********************************************
+    var name: String
+    var life: NSInteger = 100
     var type: FighterType {
         return .warrior
     }
-    var name: String
+    var weapon: Weapon {
+        return .sword
+    }
     // ***********************************************
     // MARK: - Implementation
     // ***********************************************

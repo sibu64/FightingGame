@@ -20,3 +20,9 @@ enum FighterType: String {
     case colossus = "Colosse"
 }
 
+enum Weapon: NSInteger {
+    case sword = -10
+    case axe = -20
+    case stick = -2
+    case power = 10
+}

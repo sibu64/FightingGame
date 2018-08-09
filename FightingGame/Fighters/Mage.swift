@@ -12,10 +12,14 @@ class Mage: Fighter {
     // ***********************************************
     // MARK: - Interface
     // ***********************************************
+    var name: String
+    var life: NSInteger = 80
     var type: FighterType {
         return .mage
     }
-    var name: String
+    var weapon: Weapon {
+        return .power
+    }
     // ***********************************************
     // MARK: - Implementation
     // ***********************************************

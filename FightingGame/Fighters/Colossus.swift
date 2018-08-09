@@ -13,14 +13,18 @@ class Colossus: Fighter {
     // ***********************************************
     // MARK: - Interface
     // ***********************************************
-    var type: FighterType {
-    return .colossus
-    }
     var name: String
+    var life: NSInteger = 90
+    var type: FighterType {
+        return .colossus
+    }
+    var weapon: Weapon {
+        return .stick
+    }
     // ***********************************************
     // MARK: - Implementation
     // ***********************************************
     init(name: String) {
-    self.name = name
+        self.name = name
     }
 }
