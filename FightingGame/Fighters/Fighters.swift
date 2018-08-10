@@ -8,9 +8,20 @@
 
 import Foundation
 
-protocol Fighter {
-    var type: FighterType { get }
-    var name: String { get set }
+class Fighter {
+    // ***********************************************
+    // MARK: - Interface
+    // ***********************************************
+    private(set) var name: String
+    var life: NSInteger = 0
+    var type: FighterType = .warrior
+    var weapon: Weapon = .power
+    // ***********************************************
+    // MARK: - Implementation
+    // ***********************************************
+    init(name: String) {
+        self.name = name
+    }
 }
 
 enum FighterType: String {

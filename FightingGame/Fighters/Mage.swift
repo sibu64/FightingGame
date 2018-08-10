@@ -12,18 +12,16 @@ class Mage: Fighter {
     // ***********************************************
     // MARK: - Interface
     // ***********************************************
-    var name: String
-    var life: NSInteger = 80
-    var type: FighterType {
-        return .mage
+    override var type: FighterType {
+        get { return .mage }
+        set {}
     }
-    var weapon: Weapon {
-        return .power
+    override var weapon: Weapon {
+        get { return .power }
+        set {}
     }
-    // ***********************************************
-    // MARK: - Implementation
-    // ***********************************************
-    init(name: String) {
-        self.name = name
+    override var life: NSInteger {
+        get { return 80 }
+        set {}
     }
 }

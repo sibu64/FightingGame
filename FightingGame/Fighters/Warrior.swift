@@ -12,18 +12,16 @@ class Warrior: Fighter {
     // ***********************************************
     // MARK: - Interface
     // ***********************************************
-    var name: String
-    var life: NSInteger = 100
-    var type: FighterType {
-        return .warrior
+    override var life: NSInteger {
+        get { return 100 }
+        set {}
     }
-    var weapon: Weapon {
-        return .sword
+    override var type: FighterType {
+        get { return .warrior }
+        set {}
     }
-    // ***********************************************
-    // MARK: - Implementation
-    // ***********************************************
-    init(name: String) {
-        self.name = name
+    override var weapon: Weapon {
+        get { return .sword }
+        set {}
     }
 }

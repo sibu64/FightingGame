@@ -12,15 +12,23 @@ class Game {
     // ***********************************************
     // MARK: - Interface
     // ***********************************************
-    private let team = Team()
     private var fight: Fight? = nil
+    private var player1 = Player()
+    private var player2 = Player()
     // ***********************************************
     // MARK: - Implementation
     // ***********************************************
     func play() {
-        //team.start()
+        /*print("Bonjour, bienvenue sur le jeux Fighters.")
+         print("Vous allez personnaliser vos équipes.")
+         print("Merci de choisir le nom des deux joueurs.")
+         player1.startNaming(position: 1)
+         player1.startComposeFighter(with: player2)
+         player2.startNaming(position: 2)
+         player2.startComposeFighter(with: player1)*/
+        
         let player1 = Player()
-        player1.firstname = "Steve"
+        player1.firstname = "Simon"
         player1.fighters = [
             Warrior(name: "David"),
             Mage(name: "Dandal"),
@@ -28,7 +36,7 @@ class Game {
         ]
         
         let player2 = Player()
-        player2.firstname = "Simon"
+        player2.firstname = "Steve"
         player2.fighters = [
             Warrior(name: "Joseph"),
             Colossus(name: "William"),

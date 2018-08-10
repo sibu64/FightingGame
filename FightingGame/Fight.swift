@@ -25,10 +25,28 @@ class Fight {
     func start() {
         print("!! LE COMBAT VA COMMENCER !!")
         startChoosingFighter()
+        startAttackOrCare()
     }
     // ***********************************************
     // MARK: - Private Methods
     // ***********************************************
+    private func attackOrCare() ->String? {
+        if let choice = readLine(), choice.isEmpty == false {
+            return choice
+        }
+        return nil
+    }
+    
+    private func chooseAttackOrCare() {
+        switch attackOrCare() {
+        case "1":
+            print("Attaque")
+        case "2":
+            print("Soigne")
+        default: print("Merci de saisir un choix valide")
+        }
+    }
+    
     private func listingFighter(for player: Player) {
         print("\(player.firstname!): Sélectionner votre combattant:")
         player.fighters.enumerated().forEach { value in
@@ -61,5 +79,14 @@ extension Fight {
             fighter = chooseFighter(for: player1)
         } while fighter == nil
         print("\(player1.firstname!): Combattant sélectionné est \(fighter!.name) de type \(fighter!.type.rawValue).")
+    }
+}
+
+extension Fight {
+    func startAttackOrCare() {
+        print("Voulez-vous lancer une attaque ou soigner votre équipe?"
+            + "\n1. Attaque"
+            + "\n2. Soigner\n")
+        chooseAttackOrCare()
     }
 }
