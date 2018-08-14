@@ -14,6 +14,11 @@ class Player {
     // ***********************************************
     var firstname: String? = nil
     var fighters = [Fighter]()
+    
+    enum Action: String {
+        case attack = "1"
+        case care = "2"
+    }
     // ***********************************************
     // MARK: - Implementation
     // ***********************************************
@@ -24,6 +29,42 @@ class Player {
             return element.name == name
         })
     }
+    
+    func actionCare(fighter: Fighter) {
+        for item in fighters {
+            if item.name == fighter.name {
+                item.life = Weapon.power.rawValue
+            }
+        }
+    }
+    
+    func actionAttack(
+        with selectedFighter: Fighter,
+        attackFighter: Fighter) {
+        for item in fighters {
+            if item.name == attackFighter.name {
+                item.life = selectedFighter.weapon.rawValue
+            }
+        }
+    }
+    
+    func lifeFor(fighter: Fighter) ->Fighter {
+        return fighters.filter({ value -> Bool in
+            return value.name == fighter.name
+        }).first!
+    }
+    
+    func isValidLifeForFighters() ->Bool {
+        let value = self.fighters.filter { $0.life <= 0 }.count == 0
+        return value
+    }
+    
+    var listingFighters: [String] {
+        return self.fighters.enumerated().map { (offset, element) -> String in
+            return "\(offset + 1). \(element.name) | \(element.type.rawValue) | \(element.life)"
+        }
+    }
+    
     // ***********************************************
     // MARK: - Private Methods
     // ***********************************************

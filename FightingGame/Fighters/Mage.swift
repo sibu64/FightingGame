@@ -20,8 +20,10 @@ class Mage: Fighter {
         get { return .power }
         set {}
     }
+    
+    private var _life: NSInteger = 80
     override var life: NSInteger {
-        get { return 80 }
-        set {}
+        get { return _life }
+        set { _life += newValue }
     }
 }

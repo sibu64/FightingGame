@@ -34,6 +34,6 @@ enum FighterType: String {
 enum Weapon: NSInteger {
     case sword = -10
     case axe = -20
-    case stick = -2
+    case stick = -5
     case power = 10
 }

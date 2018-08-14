@@ -20,8 +20,10 @@ class Dwarf: Fighter {
         get { return .axe }
         set {}
     }
+    
+    private var _life: NSInteger = 30
     override var life: NSInteger {
-        get { return 30 }
-        set {}
+        get { return _life }
+        set { _life += newValue }
     }
 }
