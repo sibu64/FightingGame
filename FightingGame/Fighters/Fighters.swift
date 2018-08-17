@@ -31,9 +31,26 @@ enum FighterType: String {
     case colossus = "Colosse"
 }
 
-enum Weapon: NSInteger {
-    case sword = -10
-    case axe = -20
-    case stick = -5
+enum Weapon: NSInteger, CustomStringConvertible {
+    case sword = -30
+    case axe = -40
+    case stick = -20
     case power = 10
+    
+    var description: String {
+        switch self {
+        case .sword: return "Épée"
+        case .axe: return "Hache"
+        case .stick: return "Baton"
+        case .power: return "Pouvoir"
+        }
+    }
+    
+    static var listing: [String] {
+        return [
+            "1. \(Weapon.sword.description)",
+            "2. \(Weapon.axe.description)",
+            "3. \(Weapon.stick.description)"
+        ]
+    }
 }

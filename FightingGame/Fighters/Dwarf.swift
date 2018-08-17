@@ -16,9 +16,15 @@ class Dwarf: Fighter {
         get { return .dwarf }
         set {}
     }
+    
+    private var _weapon: Weapon = .axe
     override var weapon: Weapon {
-        get { return .axe }
-        set {}
+        get { return _weapon }
+        set {
+            if newValue != .power {
+                _weapon = newValue
+            }
+        }
     }
     
     private var _life: NSInteger = 30

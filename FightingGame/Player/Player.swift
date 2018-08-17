@@ -13,11 +13,13 @@ class Player {
     // MARK: - Interface
     // ***********************************************
     var firstname: String? = nil
-    var fighters = [Fighter]()
     
-    enum Action: String {
-        case attack = "1"
-        case care = "2"
+    private var _fighters = [Fighter]()
+    var fighters: [Fighter] {
+        get {
+            return _fighters.filter { $0.life > 0 }
+        }
+        set { _fighters = newValue }
     }
     // ***********************************************
     // MARK: - Implementation
@@ -48,20 +50,34 @@ class Player {
         }
     }
     
-    func lifeFor(fighter: Fighter) ->Fighter {
+    func actionChangeWeapon(_ weapon: Weapon, with selectedFighter: Fighter) {
+        for item in fighters {
+            if item.name == selectedFighter.name {
+                item.weapon = weapon
+            }
+        }
+    }
+    
+    func lifeFor(fighter: Fighter) ->Fighter? {
         return fighters.filter({ value -> Bool in
             return value.name == fighter.name
-        }).first!
+        }).first
     }
     
     func isValidLifeForFighters() ->Bool {
-        let value = self.fighters.filter { $0.life <= 0 }.count == 0
-        return value
+        if lastElementInArrayIsMage() {
+            return false
+        }
+        return self.fighters.count != 0
+    }
+    
+    func isMageDead() ->Bool {
+        return lastElementInArrayIsMage()
     }
     
     var listingFighters: [String] {
-        return self.fighters.enumerated().map { (offset, element) -> String in
-            return "\(offset + 1). \(element.name) | \(element.type.rawValue) | \(element.life)"
+        return fighters.enumerated().map { (offset, element) -> String in
+            return "\(offset + 1). \(element.name) | \(element.type.rawValue) | vie: \(element.life) | arme: \(element.weapon.description) | puissance: \(element.weapon.rawValue)"
         }
     }
     
@@ -70,6 +86,15 @@ class Player {
     // ***********************************************
     fileprivate func addFighter(_ fighter: Fighter) {
         fighters.append(fighter)
+    }
+    
+    private func lastElementInArrayIsMage() ->Bool {
+        if self.fighters.count == 1 {
+            if fighters.first?.type == .mage {
+                return true
+            }
+        }
+        return false
     }
 }
 

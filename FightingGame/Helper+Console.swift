@@ -25,3 +25,11 @@ func consoleSelectFighter(
     }
     return fighter!
 }
+
+func consoleSelectWeapon(completion: ()->Weapon?) ->Weapon {
+    var weapon: Weapon? = nil
+    while weapon == nil {
+        weapon = completion()
+    }
+    return weapon!
+}
