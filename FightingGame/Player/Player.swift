@@ -8,7 +8,13 @@
 
 import Foundation
 
-class Player {
+extension Player {
+    static func ==(rhs: Player, lhs: Player) ->Bool {
+        return rhs.firstname == lhs.firstname
+    }
+}
+
+class Player: Equatable {
     // ***********************************************
     // MARK: - Interface
     // ***********************************************
@@ -46,6 +52,14 @@ class Player {
         for item in fighters {
             if item.name == attackFighter.name {
                 item.life = selectedFighter.weapon.rawValue
+            }
+        }
+    }
+    
+    func actionDies(for fighter: Fighter) {
+        for item in fighters {
+            if item.name == fighter.name {
+                item.life = -item.life
             }
         }
     }

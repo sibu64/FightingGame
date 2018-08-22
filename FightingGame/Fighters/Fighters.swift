@@ -46,11 +46,9 @@ enum Weapon: NSInteger, CustomStringConvertible {
         }
     }
     
-    static var listing: [String] {
-        return [
-            "1. \(Weapon.sword.description)",
-            "2. \(Weapon.axe.description)",
-            "3. \(Weapon.stick.description)"
-        ]
+    static func listing(for fighter: Fighter) ->[Weapon] {
+        let initialWeapons = [Weapon.sword, Weapon.axe, Weapon.stick]
+        let validWeapons = initialWeapons.filter { $0 != fighter.weapon }
+        return validWeapons
     }
 }

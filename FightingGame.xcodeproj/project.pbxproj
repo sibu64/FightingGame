@@ -11,11 +11,11 @@
 		696A519A2119770100EA9717 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696A51992119770100EA9717 /* Game.swift */; };
 		69F24CD221182651003F5A53 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F24CD121182651003F5A53 /* main.swift */; };
 		69F24CE02118266F003F5A53 /* Mage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F24CD82118266F003F5A53 /* Mage.swift */; };
-		69F24CE12118266F003F5A53 /* GeniusAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F24CD92118266F003F5A53 /* GeniusAction.swift */; };
 		69F24CE22118266F003F5A53 /* Warrior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F24CDA2118266F003F5A53 /* Warrior.swift */; };
 		69F24CE32118266F003F5A53 /* Dwarf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F24CDB2118266F003F5A53 /* Dwarf.swift */; };
 		69F24CE42118266F003F5A53 /* Colossus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F24CDC2118266F003F5A53 /* Colossus.swift */; };
 		69F24CE62118266F003F5A53 /* Fighters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F24CDE2118266F003F5A53 /* Fighters.swift */; };
+		6E5361B4212D62F800ADF8AD /* Genius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5361B3212D62F800ADF8AD /* Genius.swift */; };
 		6E6C0CC0211D88A30087F52D /* Helper+Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6C0CBF211D88A30087F52D /* Helper+Player.swift */; };
 		6E72688421232DAD0070524E /* Helper+Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E72688321232DAD0070524E /* Helper+Console.swift */; };
 		6E99A4DA211C6002003362F8 /* Fight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E99A4D9211C6002003362F8 /* Fight.swift */; };
@@ -39,11 +39,11 @@
 		69F24CCE21182651003F5A53 /* FightingGame */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FightingGame; sourceTree = BUILT_PRODUCTS_DIR; };
 		69F24CD121182651003F5A53 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		69F24CD82118266F003F5A53 /* Mage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mage.swift; sourceTree = "<group>"; };
-		69F24CD92118266F003F5A53 /* GeniusAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeniusAction.swift; sourceTree = "<group>"; };
 		69F24CDA2118266F003F5A53 /* Warrior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Warrior.swift; sourceTree = "<group>"; };
 		69F24CDB2118266F003F5A53 /* Dwarf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dwarf.swift; sourceTree = "<group>"; };
 		69F24CDC2118266F003F5A53 /* Colossus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colossus.swift; sourceTree = "<group>"; };
 		69F24CDE2118266F003F5A53 /* Fighters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fighters.swift; sourceTree = "<group>"; };
+		6E5361B3212D62F800ADF8AD /* Genius.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Genius.swift; sourceTree = "<group>"; };
 		6E6C0CBF211D88A30087F52D /* Helper+Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Helper+Player.swift"; sourceTree = "<group>"; };
 		6E72688321232DAD0070524E /* Helper+Console.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Helper+Console.swift"; sourceTree = "<group>"; };
 		6E99A4D9211C6002003362F8 /* Fight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fight.swift; sourceTree = "<group>"; };
@@ -103,9 +103,9 @@
 				6E99A4D9211C6002003362F8 /* Fight.swift */,
 				693C2A4221182A3B00FCC3E1 /* Player */,
 				693C2A41211826EA00FCC3E1 /* Fighters */,
-				69F24CD92118266F003F5A53 /* GeniusAction.swift */,
 				6E72688321232DAD0070524E /* Helper+Console.swift */,
 				69F24CD121182651003F5A53 /* main.swift */,
+				6E5361B3212D62F800ADF8AD /* Genius.swift */,
 				696A51992119770100EA9717 /* Game.swift */,
 			);
 			path = FightingGame;
@@ -168,9 +168,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69F24CE12118266F003F5A53 /* GeniusAction.swift in Sources */,
 				696A519A2119770100EA9717 /* Game.swift in Sources */,
 				6E6C0CC0211D88A30087F52D /* Helper+Player.swift in Sources */,
+				6E5361B4212D62F800ADF8AD /* Genius.swift in Sources */,
 				69F24CD221182651003F5A53 /* main.swift in Sources */,
 				69F24CE32118266F003F5A53 /* Dwarf.swift in Sources */,
 				6E72688421232DAD0070524E /* Helper+Console.swift in Sources */,

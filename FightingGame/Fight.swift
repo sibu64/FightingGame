@@ -14,6 +14,10 @@ class Fight {
     // ***********************************************
     private(set) var player1: Player
     private(set) var player2: Player
+    private var genius = Genius()
+    private var players: [Player] {
+        return [player1, player2]
+    }
     // ***********************************************
     // MARK: - Implementation
     // ***********************************************
@@ -23,15 +27,37 @@ class Fight {
     }
     
     func start() {
-        print("•• !! LE COMBAT VA COMMENCER !! ••")
+        print("•• ‼️ LE COMBAT VA COMMENCER ‼️ ••")
         print("----------------------------------\n")
         repeat {
+            /*for player in players {
+             let selectedFighter = startChoosingFighter(for: player)
+             if displayChoosingWeapon(with: selectedFighter) {
+             startChoosingWeapon(for: player, with: selectedFighter)
+             }
+             let attackPlayer = player == player1 ? player2 : player1
+             startAction(for: player, attack: attackPlayer, with: selectedFighter)
+             // New Step -> BONUS
+             guard gameOver() == false else { break }
+             }*/
             let fighterPlayer1 = startChoosingFighter(for: player1)
-            startChoosingWeapon(for: player1, with: fighterPlayer1)
+            if displayChoosingWeapon(with: fighterPlayer1) {
+                startChoosingWeapon(for: player1, with: fighterPlayer1)
+            }
             startAction(for: player1, attack: player2, with: fighterPlayer1)
+            startGenius(for: player1, with: fighterPlayer1)
+            print("•• JOUEUR SUIVANT ••")
+            print("--------------------")
             guard gameOver() == false else { break }
             let fighterPlayer2 = startChoosingFighter(for: player2)
+            if displayChoosingWeapon(with: fighterPlayer2) {
+                startChoosingWeapon(for: player1, with: fighterPlayer1)
+            }
             startAction(for: player2, attack: player1, with: fighterPlayer2)
+            startGenius(for: player2, with: fighterPlayer2)
+            print("\n")
+            print("•• JOUEUR SUIVANT ••")
+            print("--------------------")
         } while gameOver() == false
         print("\n\n")
         print("•• GAME OVER ••")
@@ -46,6 +72,32 @@ class Fight {
     // ***********************************************
     // MARK: - Private Methods
     // ***********************************************
+    func startGenius(for player: Player, with fighter: Fighter) {
+        print("••••• Génie •••••")
+        print("!! Répondez juste sinon vous mourrez !!\n")
+        let question = genius.getRandomQuestion
+        print("Génie: \(question.question)")
+        let answerIsGood = consolePrintGenius(with: question, completion: choosingAnswerForGenius)
+        if answerIsGood == true {
+            print("BRAVO, la partie continue pour votre personnage !!")
+        } else {
+            player.actionDies(for: fighter)
+            print("\n")
+            print("Génie: La réponse est fausse.")
+            print("Génie: La bonne réponse était: \(question.anwser)")
+            print("Génie: Votre personnage \(fighter.name) | \(fighter.type.rawValue) est mort. \n")
+        }
+    }
+    
+    private func choosingAnswerForGenius(with question: Genius.QuestionAnswer) ->Bool? {
+        if let value = consoleInput() {
+            return value.lowercased() == question.anwser.lowercased()
+        }
+        print("Merci de rentrer une réponse.")
+        return nil
+    }
+    
+    
     private func gameOver() ->Bool {
         let one = !player1.isValidLifeForFighters()
         let two = !player2.isValidLifeForFighters()
@@ -66,6 +118,14 @@ class Fight {
         return player1
     }
     
+    private func displayChoosingWeapon(with fighter: Fighter) ->Bool {
+        guard fighter.type == .mage else {
+            let number = randomNumber(min: 0, max: 3)
+            return number == 2
+        }
+        return false
+    }
+    
     private func startChoosingFighter(for player: Player) ->Fighter {
         print("\(player.firstname!): Sélectionner votre combattant:")
         listingFighter(for: player)
@@ -76,20 +136,18 @@ class Fight {
     
     private func startChoosingWeapon(for player: Player, with fighter: Fighter) {
         print("\(player.firstname!): Vous devez changer d'arme !\n Choisissez parmis ces propositions:")
-        Weapon.listing.forEach { value in
-            print(value)
-        }
-        let weapon = consoleSelectWeapon(completion: chooseWeapon)
+        let weapons = Weapon.listing(for: fighter)
+        consolePrintWeapon(weapons)
+        let weapon = consoleSelectWeapon(with: weapons, completion: chooseWeapon)
         player.actionChangeWeapon(weapon, with: fighter)
         print("\(player.firstname!): L'arme de \(fighter.name) | \(fighter.type.rawValue) est maintenant \(weapon.description)\n")
     }
     
-    private func chooseWeapon() ->Weapon? {
+    private func chooseWeapon(with weapons: [Weapon]) ->Weapon? {
         let value = consoleInput()
         switch value {
-        case "1": return .sword
-        case "2": return .axe
-        case "3": return .stick
+        case "1": return weapons.first!
+        case "2": return weapons.last!
         default:
             print("Sélection invalide. Saisisser un chiffre (ex: 1, 2, 3)")
             return nil
@@ -148,8 +206,6 @@ class Fight {
         print("\(player.firstname!): Qui souhaitez vous soigner dans votre équipe ?")
         let fighter = consoleSelectFighter(for: player, completion: chooseFighterForCare)
         player.actionCare(fighter: fighter)
-        print("•• JOUEUR SUIVANT ••")
-        print("--------------------")
     }
     
     private func actionAttack(
@@ -162,9 +218,6 @@ class Fight {
         print("\(player.firstname!): Le joueur adverse qui va subir une attaque est: \(fighter.name) | \(fighter.type.rawValue)")
         attack.actionAttack(with: selectedFighter, attackFighter: fighter)
         print("\(player.firstname!): \(fighter.name) | \(fighter.type.rawValue) a subit une attaque de type \(selectedFighter.weapon) et à perdu \(selectedFighter.weapon.rawValue) points.\n \(consoleLife(player: attack, for: fighter))")
-        
-        print("•• JOUEUR SUIVANT ••")
-        print("--------------------")
     }
     
     private func consoleLife(player: Player, for fighter: Fighter) ->String {
