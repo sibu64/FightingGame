@@ -18,14 +18,14 @@ class Genius {
         return [
             ("Je préfére Game Of Thrones ou Glee ?", "Game Of Thrones"),
             ("Marvel ou DC Comics ?", "DC Comics"),
-            ("Vrai ou faux, après plus de 73 ans de recherche l'épave du Titanic fut retrouvé en 1985 ?", "vrai"),
-            ("Vrai ou faux, les 52 otages de l'ambassade américaine en Iran ont été libéré le jour de l'investiture du président Ronald Regan ?", "vrai"),
+            ("Vrai ou faux, après plus de 73 ans de recherche l'épave du Titanic fut retrouvée en 1985 ?", "Vrai"),
+            ("Vrai ou faux, les 52 otages de l'ambassade américaine en Iran ont été libérés le jour de l'investiture du président Ronald Regan ?", "Vrai"),
             ("Qu'est ce qui est jaune est qui attend ?", "Jonathan"),
-            ("Quelle est la couleur du cheval blanc d'Henrie IV ?", "Blanc"),
+            ("Quelle est la couleur du cheval blanc d'Henri IV ?", "Blanc"),
             ("Qui suis-je ? J'ai affronté Mohammed Ali dans le combat surnommé \"The Rumble In The Jungle\".", "George Foreman"),
-            ("Qui à écrit le seigneur des anneaux ?", "Tolkien"),
-            ("Quel philosophe à écrit \"Lorsque l'on se cogne la tête contre un pot et que cela sonne creux, çà n'ait pas forcément le pot qui est vide\"", "Confucius"),
-            ("Quel philosophe à écrit \"La vie est un mystère qu'il faut vivre et non un problème à résoudre\" ?", "Gandhi")
+            ("Qui a écrit le seigneur des anneaux ?", "Tolkien"),
+            ("Quel philosophe a écrit \"Lorsque l'on se cogne la tête contre un pot et que cela sonne creux, ce n'est pas forcément le pot qui est vide\"", "Confucius"),
+            ("Quel philosophe a écrit \"La vie est un mystère qu'il faut vivre et non un problème à résoudre\" ?", "Gandhi")
         ]
     }
     
