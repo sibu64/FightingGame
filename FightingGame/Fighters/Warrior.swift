@@ -12,17 +12,20 @@ class Warrior: Fighter {
     // ***********************************************
     // MARK: - Interface
     // ***********************************************
+    /// Override life for fighter
     private var _life: NSInteger = 50//100
     override var life: NSInteger {
         get { return _life }
         set { _life += newValue }
     }
     
+    /// Override a type of fighter
     override var type: FighterType {
         get { return .warrior }
         set {}
     }
     
+    /// Override a type of weapon
     private var _weapon: Weapon = .sword
     override var weapon: Weapon {
         get { return _weapon }

@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Show console input and retrieve string
 func consoleInput() ->String? {
     print("\nChoix:")
     if let choice = readLine(), choice.isEmpty == false {
@@ -16,6 +17,7 @@ func consoleInput() ->String? {
     return nil
 }
 
+/// Show weapon for fighter selected
 func consolePrintWeapon(_ weapons: [Weapon]) {
     let values = weapons.enumerated().map({ value -> String in
         return "\(value.offset + 1). \(value.element.description)"
@@ -25,6 +27,7 @@ func consolePrintWeapon(_ weapons: [Weapon]) {
     }
 }
 
+/// Show and choose fighter for player
 func consoleSelectFighter(
     for player: Player,
     completion: (Player)->Fighter?) ->Fighter {
@@ -35,6 +38,7 @@ func consoleSelectFighter(
     return fighter!
 }
 
+/// Show and choose weapon for fighter
 func consoleSelectWeapon(
     with weapons: [Weapon],
     completion: ([Weapon])->Weapon?) ->Weapon {
@@ -45,6 +49,7 @@ func consoleSelectWeapon(
     return weapon!
 }
 
+/// Show Genius in console
 func consolePrintGenius(
     with question: Genius.QuestionAnswer,
     completion: (Genius.QuestionAnswer)->Bool?) ->Bool {
@@ -55,6 +60,7 @@ func consolePrintGenius(
     return answerIsGood!
 }
 
+/// Generate random number
 func randomNumber(min: Int, max:Int) ->Int {
     return min + Int(arc4random_uniform(UInt32(max - min + 1)))
 }

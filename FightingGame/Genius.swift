@@ -12,8 +12,10 @@ class Genius {
     // ***********************************************
     // MARK: - Interface
     // ***********************************************
+    /// Alias for Tuple
     typealias QuestionAnswer = (question: String, anwser: String)
     
+    /// List of question/answer of Genius
     private var questions: [QuestionAnswer] {
         return [
             ("Je préfére Game Of Thrones ou Glee ?", "Game Of Thrones"),
@@ -28,7 +30,7 @@ class Genius {
             ("Quel philosophe a écrit \"La vie est un mystère qu'il faut vivre et non un problème à résoudre\" ?", "Gandhi")
         ]
     }
-    
+    /// Get a random question of Genius
     var getRandomQuestion: QuestionAnswer {
         let number = randomNumber(min: 0, max: 10)
         return questions[number]

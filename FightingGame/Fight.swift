@@ -12,20 +12,26 @@ class Fight {
     // ***********************************************
     // MARK: - Interface
     // ***********************************************
+    /// Player 1 of fight class
     private(set) var player1: Player
+    /// Player 2 of fight class
     private(set) var player2: Player
+    /// BONUS: Genius class
     private var genius = Genius()
+    /// An array of players who are going to fight
     private var players: [Player] {
         return [player1, player2]
     }
     // ***********************************************
     // MARK: - Implementation
     // ***********************************************
+    /// Constructor of Fight class.
+    /// Take two parameters - Player1 / Player2
     public init(player1: Player, player2: Player) {
         self.player1 = player1
         self.player2 = player2
     }
-    
+    /// Start the fight
     func start() {
         print("\n•• 🗡️ LE COMBAT VA COMMENCER 🗡️ ••")
         print("-----------------------------------------\n")
@@ -38,22 +44,26 @@ class Fight {
             if displayGenius() {
                 startGenius(for: player1, with: fighterPlayer1)
             }
-            print("\n➡️ JOUEUR SUIVANT")
-            print("--------------------")
+            if gameOver() == false {
+                print("\n➡️ JOUEUR SUIVANT")
+                print("--------------------")
+            }
             guard gameOver() == false else { break }
             let fighterPlayer2 = startChoosingFighter(for: player2)
             if displayChoosingWeapon(with: fighterPlayer2) {
-                startChoosingWeapon(for: player1, with: fighterPlayer1)
+                startChoosingWeapon(for: player2, with: fighterPlayer2)
             }
             startAction(for: player2, attack: player1, with: fighterPlayer2)
             if displayGenius() {
                 startGenius(for: player2, with: fighterPlayer2)
             }
-            print("\n➡️ JOUEUR SUIVANT")
-            print("--------------------")
+            if gameOver() == false {
+                print("\n➡️ JOUEUR SUIVANT")
+                print("--------------------")
+            }
         } while gameOver() == false
         print("\n\n")
-        print("•• GAME OVER ••")
+        print("🔚 GAME OVER 🔚")
         
         let winnerPlayer = winner()
         let looserPlayer = looser()
@@ -65,6 +75,7 @@ class Fight {
     // ***********************************************
     // MARK: - Private Methods
     // ***********************************************
+    /// Display random genius in game for one fighter
     func startGenius(for player: Player, with fighter: Fighter) {
         print("\n•• 🧞 GÉNIE 🧞 ••")
         print("-----------------------------------------")
@@ -82,7 +93,7 @@ class Fight {
             print("🧞 Génie: Votre personnage \(fighter.name) | \(fighter.type.rawValue) est mort ⚰️ \n")
         }
     }
-    
+    /// Choose genius answer. The answer should be valid
     private func choosingAnswerForGenius(with question: Genius.QuestionAnswer) ->Bool? {
         if let value = consoleInput() {
             return value.lowercased() == question.anwser.lowercased()
@@ -91,27 +102,27 @@ class Fight {
         return nil
     }
     
-    
+    /// Game over, a player loose the game
     private func gameOver() ->Bool {
         let one = !player1.isValidLifeForFighters()
         let two = !player2.isValidLifeForFighters()
         return one != two
     }
-    
+    /// Return a winner player
     private func winner() ->Player {
         if player1.isValidLifeForFighters() {
             return player1
         }
         return player2
     }
-    
+    /// Return a looser player
     private func looser() ->Player {
         if player1.isValidLifeForFighters() {
             return player2
         }
         return player1
     }
-    
+    /// Should I display a list of weapons in the game
     private func displayChoosingWeapon(with fighter: Fighter) ->Bool {
         guard fighter.type == .mage else {
             let number = randomNumber(min: 0, max: 3)
@@ -119,12 +130,12 @@ class Fight {
         }
         return false
     }
-    
+    /// Should I display a genius in the game
     private func displayGenius() ->Bool {
         let number = randomNumber(min: 0, max: 3)
         return number == 3
     }
-    
+    /// Choosing a fighter in console
     private func startChoosingFighter(for player: Player) ->Fighter {
         print("👨🏻 \(player.firstname!): Sélectionner votre combattant:")
         print("-----------------------------------------")
@@ -133,7 +144,7 @@ class Fight {
         print("👨🏻 \(player.firstname!): Combattant sélectionné est \(fighter.name) de type \(fighter.type.rawValue).")
         return fighter
     }
-    
+    /// Choosing a weapon in console
     private func startChoosingWeapon(for player: Player, with fighter: Fighter) {
         print("👨🏻 \(player.firstname!): Vous devez changer d'arme !\n")
         print("👨🏻 \(player.firstname!): Choisissez parmis ces propositions:")
@@ -144,7 +155,8 @@ class Fight {
         player.actionChangeWeapon(weapon, with: fighter)
         print("👨🏻 \(player.firstname!): L'arme de \(fighter.name) | \(fighter.type.rawValue) est maintenant \(weapon.description)\n")
     }
-    
+    /// Choice of choosing weapon in console
+    /// Choice is only 1 or 2
     private func chooseWeapon(with weapons: [Weapon]) ->Weapon? {
         let value = consoleInput()
         switch value {
@@ -155,13 +167,14 @@ class Fight {
             return nil
         }
     }
-    
+    /// Display fighters in console
     private func listingFighter(for player: Player) {
         player.listingFighters.forEach { value in
             print(value)
         }
     }
-    
+    /// Choosing fighter in console and return it
+    /// Only 1,2,3 are valid
     private func chooseFighter(for player: Player) ->Fighter? {
         let value = consoleInput()
         switch value {
@@ -182,7 +195,8 @@ class Fight {
             return nil
         }
     }
-    
+    /// Choosing a fighter who is going to be cared
+    /// The fighter should be another fighter than the mage
     private func chooseFighterForCare(with player: Player) ->Fighter? {
         let fighter = chooseFighter(for: player)
         guard let value = fighter, value.type != .mage else {
@@ -192,7 +206,7 @@ class Fight {
         print("👨🏻 \(player.firstname!): Vous avez choisi de soigner: \(fighter!.name) | \(fighter!.type.rawValue)")
         return value
     }
-    
+    /// Start action: Care or Attack
     private func startAction(
         for player: Player,
         attack: Player,
@@ -203,13 +217,13 @@ class Fight {
             actionAttack(for: player, attack: attack, with: selectedFighter)
         }
     }
-    
+    /// Start action Care
     private func actionCare(for player: Player) {
         print("👨🏻 \(player.firstname!): Qui souhaitez vous soigner dans votre équipe ?")
         let fighter = consoleSelectFighter(for: player, completion: chooseFighterForCare)
         player.actionCare(fighter: fighter)
     }
-    
+    /// Start action Attack
     private func actionAttack(
         for player: Player,
         attack: Player,
@@ -222,11 +236,11 @@ class Fight {
         attack.actionAttack(with: selectedFighter, attackFighter: fighter)
         print("👨🏻 \(player.firstname!): \(fighter.name) | \(fighter.type.rawValue) a subit une attaque de type \(selectedFighter.weapon) et à perdu \(selectedFighter.weapon.rawValue) points.\n \(consoleLife(player: attack, for: fighter))")
     }
-    
+    /// Display life for one fighter in console.
     private func consoleLife(player: Player, for fighter: Fighter) ->String {
         let life = player.lifeFor(fighter: fighter)?.life
         return life != nil ?
             "❤️ Son niveau de vie est à \(life!)\n" :
-        "❤️ \(fighter.name) est mort.\n"
+        "⚰️ \(fighter.name) est mort.\n"
     }
 }

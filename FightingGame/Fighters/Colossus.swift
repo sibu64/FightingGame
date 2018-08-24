@@ -13,17 +13,20 @@ class Colossus: Fighter {
     // ***********************************************
     // MARK: - Interface
     // ***********************************************
+    /// Override life for fighter
     private var _life: NSInteger = 40//90
     override var life: NSInteger {
         get { return _life }
         set { _life += newValue }
     }
     
+    /// Override a type of fighter
     override var type: FighterType {
         get { return .colossus }
         set {}
     }
     
+    /// Override a type of weapon
     private var _weapon: Weapon = .stick
     override var weapon: Weapon {
         get { return _weapon }

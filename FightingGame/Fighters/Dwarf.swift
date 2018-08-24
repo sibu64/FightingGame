@@ -12,11 +12,13 @@ class Dwarf: Fighter {
     // ***********************************************
     // MARK: - Interface
     // ***********************************************
+    /// Override a type of fighter
     override var type: FighterType {
         get { return .dwarf }
         set {}
     }
     
+    /// Override a type of weapon
     private var _weapon: Weapon = .axe
     override var weapon: Weapon {
         get { return _weapon }
@@ -26,7 +28,7 @@ class Dwarf: Fighter {
             }
         }
     }
-    
+    /// Override life for fighter
     private var _life: NSInteger = 30
     override var life: NSInteger {
         get { return _life }

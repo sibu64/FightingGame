@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Check if two players instances are equals
 extension Player {
     static func ==(rhs: Player, lhs: Player) ->Bool {
         return rhs.firstname == lhs.firstname
@@ -18,8 +19,11 @@ class Player: Equatable {
     // ***********************************************
     // MARK: - Interface
     // ***********************************************
+    /// Firstname of player - Default is nil
     var firstname: String? = nil
     
+    /// List fighters for a player
+    /// Return only player whose has life greater than zero
     private var _fighters = [Fighter]()
     var fighters: [Fighter] {
         get {
@@ -32,12 +36,15 @@ class Player: Equatable {
     // ***********************************************
     init() { }
     
+    /// Check if fighter name is unique
+    /// Return true if ok
     func isValidFighter(name: String) ->Bool {
         return !fighters.contains(where: { element -> Bool in
             return element.name == name
         })
     }
-    
+    /// Care a fighter
+    /// Only mage has this action
     func actionCare(fighter: Fighter) {
         for item in fighters {
             if item.name == fighter.name {
@@ -46,6 +53,8 @@ class Player: Equatable {
         }
     }
     
+    /// Attack an opponent fighter with a fighter
+    /// The life of opponent fighter decrease
     func actionAttack(
         with selectedFighter: Fighter,
         attackFighter: Fighter) {
@@ -56,6 +65,8 @@ class Player: Equatable {
         }
     }
     
+    /// A fighter dies
+    /// Generally when is anwsered a wrong question of genius
     func actionDies(for fighter: Fighter) {
         for item in fighters {
             if item.name == fighter.name {
@@ -64,6 +75,7 @@ class Player: Equatable {
         }
     }
     
+    /// Change weapon of fighter
     func actionChangeWeapon(_ weapon: Weapon, with selectedFighter: Fighter) {
         for item in fighters {
             if item.name == selectedFighter.name {
@@ -72,12 +84,16 @@ class Player: Equatable {
         }
     }
     
+    /// Return life for a current fighter passed in parameter
     func lifeFor(fighter: Fighter) ->Fighter? {
         return fighters.filter({ value -> Bool in
             return value.name == fighter.name
         }).first
     }
     
+    /// Check if life for all fighters are greater than zero,
+    /// and if only mage is still in collection of fighters.
+    /// Return true or false
     func isValidLifeForFighters() ->Bool {
         if lastElementInArrayIsMage() {
             return false
@@ -85,10 +101,13 @@ class Player: Equatable {
         return self.fighters.count != 0
     }
     
+    /// Check if mage fighter is dead
     func isMageDead() ->Bool {
         return lastElementInArrayIsMage()
     }
     
+    /// Description of fighters in collection.
+    /// Return an array of formatted string
     var listingFighters: [String] {
         return fighters.enumerated().map { (offset, element) -> String in
             let emoji = self.emoji(for: element)
@@ -99,6 +118,7 @@ class Player: Equatable {
     // ***********************************************
     // MARK: - Private Methods
     // ***********************************************
+    /// Return associated emoji for a fighter
     private func emoji(for fighter: Fighter) ->Character {
         switch fighter.type {
         case .mage: return "🧙‍♂️"
@@ -108,10 +128,13 @@ class Player: Equatable {
         }
     }
     
+    /// Add a fighter in fighter collection
     fileprivate func addFighter(_ fighter: Fighter) {
         fighters.append(fighter)
     }
     
+    /// Check is last element in fighter collection is mage
+    /// Return true or false
     private func lastElementInArrayIsMage() ->Bool {
         if self.fighters.count == 1 {
             if fighters.first?.type == .mage {
@@ -123,10 +146,11 @@ class Player: Equatable {
 }
 
 extension Player {
+    /// Start naming player
     func startNaming(position: NSInteger) {
         setPlayer(position)
     }
-    
+    /// Start selection fighter for one player
     func startComposeFighter(with player: Player) {
         setFighter(player: player)
     }
@@ -135,6 +159,8 @@ extension Player {
 // MARK: - Private Methods Extension
 // ***********************************************
 extension Player {
+    /// Naming a player
+    /// While is nil, console input is showned
     private func setPlayer(_ number: NSInteger) {
         while self.firstname == nil {
             self.firstname = choosePlayerName(number)
@@ -143,6 +169,7 @@ extension Player {
 }
 
 extension Player {
+    /// Start selection of three fighters for one player
     private func setFighter(player: Player) {
         startingChooseFighter()
         repeat {
@@ -154,6 +181,8 @@ extension Player {
 }
 
 extension Player {
+    /// Choose player name in console
+    /// The name of player should be valid (not empty)
     private func choosePlayerName(_ playerNumber: NSInteger) ->String? {
         print("👨🏻 Joueur \(playerNumber), quel est votre nom ?")
         print("-----------------------------------------")
@@ -167,6 +196,8 @@ extension Player {
 }
 
 extension Player {
+    /// Choose fighter in console
+    /// Displaying selection fighters
     private func startingChooseFighter() {
         print("\n👨🏻 \(self.firstname!): Il est temps de constituer votre équipe.")
         print("Vous devez choisir 3 combattants sur les 4.\n")
@@ -179,6 +210,7 @@ extension Player {
 }
 
 extension Player {
+    /// Add fighter in collection
     private func addFighter(at index: NSInteger, _ player: Player) {
         guard let fighter = chooseFighter(at: index, player: player) else {
             addFighter(at: index, player)
@@ -189,6 +221,8 @@ extension Player {
 }
 
 extension Player {
+    /// Choose a valid fighter.
+    /// Only 1,2,3,4 are authorized
     private func chooseFighter(at index: NSInteger, player: Player) ->Fighter? {
         print("\n👨🏻 \(self.firstname!): Choissisez le combattant numero \(index):")
         print("-----------------------------------------")
@@ -215,6 +249,8 @@ extension Player {
 }
 
 extension Player {
+    /// After selected a fighter, player should name his fighter
+    /// The name of fighter in game should be unique
     private func namingFighter(player: Player) ->String? {
         print("👨🏻 \(self.firstname!): Quel est son nom ?")
         print("-----------------------------------------")

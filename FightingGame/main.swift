@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Start game
 let game = Game()
 game.play()
 

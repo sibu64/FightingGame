@@ -12,14 +12,20 @@ class Game {
     // ***********************************************
     // MARK: - Interface
     // ***********************************************
+    /// Fight for the game with two player
+    /// Default is nil
+    /// Fight is instanciate only when two players are created
     private var fight: Fight? = nil
+    /// Player 1 in the game
     private var player1 = Player()
+    /// Player 2 in the game
     private var player2 = Player()
     // ***********************************************
     // MARK: - Implementation
     // ***********************************************
+    /// Start a game
     func play() {
-        print("•• 🌴 BIENVENUE SUR LE JEU FIGHTERS 🌴 ••")
+        print("•• 🕹️ BIENVENUE SUR LE JEU FIGHTERS 🕹️ ••")
         print("-----------------------------------------")
         print("- Vous allez personnaliser vos équipes.")
         print("- Merci de choisir le nom des deux joueurs.\n")
