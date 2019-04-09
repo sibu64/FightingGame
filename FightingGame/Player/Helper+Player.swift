@@ -9,7 +9,7 @@
 import Foundation
 
 struct Helper {
-    /// Check if fighters in game for this two player are not dead
+    /// Check if fighters in game for this two players are not dead
     static func isValidFighter(
         name: String,
         player1: Player,

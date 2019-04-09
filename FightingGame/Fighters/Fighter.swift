@@ -31,7 +31,7 @@ class Fighter {
 /// Enum Type of fighter
 enum FighterType: String {
     case mage = "Mage"
-    case warrior = "Guerrier"
+    case warrior = "Combattant"
     case dwarf = "Nain"
     case colossus = "Colosse"
 }

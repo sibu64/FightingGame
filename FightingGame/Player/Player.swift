@@ -119,7 +119,7 @@ class Player: Equatable {
     // MARK: - Private Methods
     // ***********************************************
     /// Return associated emoji for a fighter
-    private func emoji(for fighter: Fighter) ->Character {
+    private func emoji(for fighter: Fighter) ->String {
         switch fighter.type {
         case .mage: return "🧙‍♂️"
         case .colossus: return "💪"
@@ -200,9 +200,9 @@ extension Player {
     /// Displaying selection fighters
     private func startingChooseFighter() {
         print("\n👨🏻 \(self.firstname!): Il est temps de constituer votre équipe.")
-        print("Vous devez choisir 3 combattants sur les 4.\n")
+        print("Vous devez choisir 3 personnages sur les 4.\n")
         print("Voici les personnages:"
-            + "\n🧝‍♂️ 1. Guerrier"
+            + "\n🧝‍♂️ 1. Combattant"
             + "\n🧙‍♂️ 2. Mage"
             + "\n👦 3. Nain"
             + "\n💪 4. Colosse")
@@ -224,7 +224,7 @@ extension Player {
     /// Choose a valid fighter.
     /// Only 1,2,3,4 are authorized
     private func chooseFighter(at index: NSInteger, player: Player) ->Fighter? {
-        print("\n👨🏻 \(self.firstname!): Choissisez le combattant numero \(index):")
+        print("\n👨🏻 \(self.firstname!): Choisissez le personnage numero \(index):")
         print("-----------------------------------------")
         if let choice = readLine() {
             switch choice {
@@ -262,7 +262,7 @@ extension Player {
                     break
                 } else {
                     nameFighter = nil
-                    print("‼️ Attention !! Le nom des combattants doit être unique. ‼️")
+                    print("‼️ Attention !! Le nom des personnages doit être unique. ‼️")
                 }
             }
             nameFighter = nil

@@ -13,7 +13,7 @@ class Genius {
     // MARK: - Interface
     // ***********************************************
     /// Alias for Tuple
-    typealias QuestionAnswer = (question: String, anwser: String)
+    typealias QuestionAnswer = (question: String, answer: String)
     
     /// List of question/answer of Genius
     private var questions: [QuestionAnswer] {

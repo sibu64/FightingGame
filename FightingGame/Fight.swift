@@ -89,14 +89,14 @@ class Fight {
             player.actionDies(for: fighter)
             print("\n")
             print("🧞 Génie: La réponse est fausse")
-            print("🧞 Génie: La bonne réponse était: \(question.anwser)")
+            print("🧞 Génie: La bonne réponse était: \(question.answer)")
             print("🧞 Génie: Votre personnage \(fighter.name) | \(fighter.type.rawValue) est mort ⚰️ \n")
         }
     }
     /// Choose genius answer. The answer should be valid
     private func choosingAnswerForGenius(with question: Genius.QuestionAnswer) ->Bool? {
         if let value = consoleInput() {
-            return value.lowercased() == question.anwser.lowercased()
+            return value.lowercased() == question.answer.lowercased()
         }
         print("‼️ Merci de rentrer une réponse ‼️")
         return nil
@@ -137,11 +137,11 @@ class Fight {
     }
     /// Choosing a fighter in console
     private func startChoosingFighter(for player: Player) ->Fighter {
-        print("👨🏻 \(player.firstname!): Sélectionner votre combattant:")
+        print("👨🏻 \(player.firstname!): Sélectionner votre personnage:")
         print("-----------------------------------------")
         listingFighter(for: player)
         let fighter = consoleSelectFighter(for: player, completion: chooseFighter)
-        print("👨🏻 \(player.firstname!): Combattant sélectionné est \(fighter.name) de type \(fighter.type.rawValue).")
+        print("👨🏻 \(player.firstname!): Le personnage sélectionné est \(fighter.name) de type \(fighter.type.rawValue).")
         return fighter
     }
     /// Choosing a weapon in console
@@ -232,7 +232,7 @@ class Fight {
         print("-----------------------------------------\n")
         listingFighter(for: attack)
         let fighter = consoleSelectFighter(for: attack, completion: chooseFighter)
-        print("👨🏻 \(player.firstname!): Le joueur adverse qui va subir une attaque est: \(fighter.name) | \(fighter.type.rawValue)")
+        print("👨🏻 \(player.firstname!): Le personnage adverse qui va subir une attaque est: \(fighter.name) | \(fighter.type.rawValue)")
         attack.actionAttack(with: selectedFighter, attackFighter: fighter)
         print("👨🏻 \(player.firstname!): \(fighter.name) | \(fighter.type.rawValue) a subit une attaque de type \(selectedFighter.weapon) et à perdu \(selectedFighter.weapon.rawValue) points.\n \(consoleLife(player: attack, for: fighter))")
     }
