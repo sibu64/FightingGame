@@ -37,7 +37,7 @@ enum FighterType: String {
 }
 /// Enum of damages weapons
 enum Weapon: NSInteger, CustomStringConvertible {
-    case sword = -30
+    case sword = -10
     case axe = -40
     case stick = -20
     case power = 10
