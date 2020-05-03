@@ -23,7 +23,7 @@ class Genius {
             ("Vrai ou faux, après plus de 73 ans de recherche l'épave du Titanic fut retrouvée en 1985 ?", "Vrai"),
             ("Vrai ou faux, les 52 otages de l'ambassade américaine en Iran ont été libérés le jour de l'investiture du président Ronald Regan ?", "Vrai"),
             ("Qu'est ce qui est jaune est qui attend ?", "Jonathan"),
-            ("Quelle est la couleur du cheval blanc d'Henri IV ?", "Blanche"),
+            ("Quelle est la couleur du cheval blanc d'Henri IV ?", "Blanc"),
             ("Qui suis-je ? J'ai affronté Mohammed Ali dans le combat surnommé \"The Rumble In The Jungle\".", "George Foreman"),
             ("Qui a écrit le seigneur des anneaux ?", "Tolkien"),
             ("Quel philosophe a écrit \"Lorsque l'on se cogne la tête contre un pot et que cela sonne creux, ce n'est pas forcément le pot qui est vide\"", "Confucius"),
@@ -32,7 +32,7 @@ class Genius {
     }
     /// Get a random question of Genius
     var getRandomQuestion: QuestionAnswer {
-        let number = randomNumber(min: 0, max: 9)
+        let number = randomNumber(min: 0, max: 10)
         return questions[number]
     }
 }
